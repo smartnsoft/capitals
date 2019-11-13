@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 /// Colors
 class _Colors {
-  Color get primaryColor => Colors.pink[50];
+  Color get primary => Color(0xfff5ceb8);
 
-  Color get black => Colors.black54;
+  Color get primaryAccent => Color(0xfff2bea1);
 
-  Color get pink => Color(0xfff5ceb8);
+  Color get black => Color(0xff212947);
 }
 
 /// Values
@@ -28,6 +28,12 @@ class _Values {
 
   /// Width required to be considered as a big web screen
   double get bigWebWidth => bigCellWidth * 3 + 2.5 * bigCellsSpacing;
+
+  /// Big screen search width
+  double get bigSearchWidth => 460;
+
+  /// Small screen search width
+  double get smallSearchWidth => 300;
 }
 
 /// Texts Styles
@@ -36,10 +42,15 @@ class _TextStyles {
 
   _TextStyles(this.colors);
 
-  TextStyle get bigWebTitle => TextStyle(
+  TextStyle get bigScreenTitle => TextStyle(
         color: colors.black,
-        fontSize: 35,
+        fontSize: 40,
         fontWeight: FontWeight.bold,
+      );
+
+  TextStyle get mediumWhiteLabel => TextStyle(
+        color: Colors.white,
+        fontSize: 18,
       );
 }
 
