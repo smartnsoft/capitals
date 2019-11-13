@@ -1,4 +1,5 @@
 import 'package:flappy_capitals/core/i18n.dart';
+import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +12,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      localizationsDelegates: [
-        const I18nDelegate(),
-      ],
-      supportedLocales: I18nDelegate.supportedLocals,
-      home: Home(),
+    return AppTheme(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        localizationsDelegates: [
+          const I18nDelegate(),
+        ],
+        supportedLocales: I18nDelegate.supportedLocals,
+        home: Home(),
+      ),
     );
   }
 }
@@ -29,6 +32,7 @@ class Home extends StatelessWidget {
       body: Center(
         child: Text(
           I18n.of(context).welcoming_label,
+          style: AppTheme.of(context).textStyles.bigWebTitle,
         ),
       ),
     );
