@@ -1,3 +1,4 @@
+import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      localizationsDelegates: [
+        const I18nDelegate(),
+      ],
+      supportedLocales: I18nDelegate.supportedLocals,
       home: Home(),
     );
   }
@@ -22,7 +27,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("ok"),
+        child: Text(
+          I18n.of(context).welcoming_label,
+        ),
       ),
     );
   }
