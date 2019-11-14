@@ -14,7 +14,7 @@ class _Colors {
 /// Values
 class _Values {
   /// Home cards overflow on Header
-  double get cardsOverflow => 70;
+  double get cellsOverflow => 70;
 
   /// Home Header height ratio
   double get headerHeightRatio => .45;
@@ -42,6 +42,9 @@ class _Values {
 
   /// Small screen search width
   double get smallSearchWidth => 300;
+
+  /// Made with flutter height
+  double get madeWithFlutterHeight => 25;
 }
 
 /// Images paths
@@ -53,6 +56,8 @@ class _Images {
   String get hard => "assets/images/hard.png";
 
   String get icSearch => "assets/images/ic_search.png";
+
+  String get madeWithFlutter => "assets/images/made_with_flutter.png";
 }
 
 /// Texts Styles
@@ -64,6 +69,13 @@ class _TextStyles {
   TextStyle get bigScreenTitle => TextStyle(
         color: colors.appBlack,
         fontSize: 40,
+        fontWeight: FontWeight.w700,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get mediumScreenTitle => TextStyle(
+        color: colors.appBlack,
+        fontSize: 30,
         fontWeight: FontWeight.w700,
         fontFamily: "ProxymaNova",
       );

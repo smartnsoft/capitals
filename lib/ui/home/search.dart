@@ -7,7 +7,7 @@ class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
+      height: Utils.isBigScreen(context) ? 45 : 35,
       width: Utils.isBigScreen(context)
           ? AppTheme.of(context).values.bigSearchWidth
           : AppTheme.of(context).values.smallSearchWidth,
