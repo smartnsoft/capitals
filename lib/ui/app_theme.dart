@@ -14,6 +14,9 @@ class _Values {
   /// Home cards overflow on Header
   double get cardsOverflow => 70;
 
+  /// Home Header height ratio
+  double get headerHeightRatio => .45;
+
   /// Home Cells width on big screen
   double get bigCellWidth => 320;
 
@@ -37,6 +40,15 @@ class _Values {
 
   /// Small screen search width
   double get smallSearchWidth => 300;
+}
+
+/// Images paths
+class _Images {
+  String get easy => "assets/images/easy.png";
+
+  String get medium => "assets/images/medium.png";
+
+  String get hard => "assets/images/hard.png";
 }
 
 /// Texts Styles
@@ -75,6 +87,7 @@ class _TextStyles {
 class AppTheme extends InheritedWidget {
   final _Colors colors = _Colors();
   final _Values values = _Values();
+  final _Images images = _Images();
 
   _TextStyles textStyles;
 

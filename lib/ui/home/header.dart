@@ -9,7 +9,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * .4,
+      height: MediaQuery.of(context).size.height * AppTheme.of(context).values.headerHeightRatio,
       color: AppTheme.of(context).colors.primary,
       child: Stack(
         children: <Widget>[
@@ -29,6 +29,9 @@ class Header extends StatelessWidget {
                 Column(
                   crossAxisAlignment: Utils.isBigScreen(context) ? CrossAxisAlignment.center : CrossAxisAlignment.start,
                   children: <Widget>[
+                    SizedBox(
+                      height: 40,
+                    ),
                     Text(
                       I18n.of(context).good_morning,
                       style: AppTheme.of(context).textStyles.bigScreenTitle,

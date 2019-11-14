@@ -9,17 +9,17 @@ class Home extends StatelessWidget {
   Widget _buildCells(BuildContext context) {
     final List<Widget> cells = [
       Cell(
-        icon: Icon(Icons.call),
+        imageAssetPath: AppTheme.of(context).images.easy,
         difficulty: I18n.of(context).easy,
         description: I18n.of(context).easy_description,
       ),
       Cell(
-        icon: Icon(Icons.call),
+        imageAssetPath: AppTheme.of(context).images.medium,
         difficulty: I18n.of(context).medium,
         description: I18n.of(context).medium_description,
       ),
       Cell(
-        icon: Icon(Icons.call),
+        imageAssetPath: AppTheme.of(context).images.hard,
         difficulty: I18n.of(context).hard,
         description: I18n.of(context).hard_description,
       ),
@@ -58,7 +58,8 @@ class Home extends StatelessWidget {
                       child: Header(),
                     ),
                     Positioned(
-                      top: MediaQuery.of(context).size.height * .4 - AppTheme.of(context).values.cardsOverflow,
+                      top: MediaQuery.of(context).size.height * AppTheme.of(context).values.headerHeightRatio -
+                          AppTheme.of(context).values.cardsOverflow,
                       left: 0,
                       right: 0,
                       child: _buildCells(context),

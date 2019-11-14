@@ -3,13 +3,13 @@ import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 
 class Cell extends StatelessWidget {
-  final Icon icon;
+  final String imageAssetPath;
   final String difficulty;
   final String description;
 
   const Cell({
     Key key,
-    this.icon,
+    this.imageAssetPath,
     this.difficulty,
     this.description,
   }) : super(key: key);
@@ -34,14 +34,14 @@ class Cell extends StatelessWidget {
           ),
           child: _buildContent(
             context,
-            icon,
+            imageAssetPath,
           ),
         ),
       ),
     );
   }
 
-  Widget _buildContent(BuildContext context, Icon icon) {
+  Widget _buildContent(BuildContext context, String imageAssetPath) {
     final List<Widget> texts = [
       Text(
         difficulty,
@@ -59,7 +59,17 @@ class Cell extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Center(
-              child: icon,
+              child: Container(
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: Image.asset(
+                  imageAssetPath,
+                  height: 50,
+                  width: 50,
+                ),
+              ),
             ),
           ),
           Expanded(
@@ -75,7 +85,11 @@ class Cell extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Center(
-              child: icon,
+              child: Image.asset(
+                imageAssetPath,
+                height: 50,
+                width: 50,
+              ),
             ),
           ),
           Expanded(
