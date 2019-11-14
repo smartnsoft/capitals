@@ -6,11 +6,14 @@ class _Colors {
 
   Color get primaryAccent => Color(0xfff2bea1);
 
-  Color get black => Color(0xff212947);
+  Color get appBlack => Color(0xff212947);
 }
 
 /// Values
 class _Values {
+  /// Home cards overflow on Header
+  double get cardsOverflow => 70;
+
   /// Home Cells width on big screen
   double get bigCellWidth => 320;
 
@@ -43,7 +46,7 @@ class _TextStyles {
   _TextStyles(this.colors);
 
   TextStyle get bigScreenTitle => TextStyle(
-        color: colors.black,
+        color: colors.appBlack,
         fontSize: 40,
         fontWeight: FontWeight.w700,
         fontFamily: "ProxymaNova",
@@ -52,6 +55,19 @@ class _TextStyles {
   TextStyle get mediumWhiteLabel => TextStyle(
         color: Colors.white,
         fontSize: 18,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get bigBlackText => TextStyle(
+        color: colors.appBlack,
+        fontSize: 28,
+        fontWeight: FontWeight.w700,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get mediumBlackText => TextStyle(
+        color: colors.appBlack,
+        fontSize: 14,
         fontFamily: "ProxymaNova",
       );
 }

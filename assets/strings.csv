@@ -1,3 +1,9 @@
 keys,en
 good_morning,"Good morning,"
 lets_play,Let's play !
+easy,Easy
+medium,Medium
+hard,Hard
+easy_description,"One question, two choices"
+medium_description,"One question, four choices"
+hard_description,"One question, type the answer"

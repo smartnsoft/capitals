@@ -22,7 +22,7 @@ class Header extends StatelessWidget {
             top: 0,
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: AppTheme.of(context).values.cardsOverflow,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

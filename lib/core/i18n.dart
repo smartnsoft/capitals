@@ -9,6 +9,18 @@ class I18n {
 
 String get lets_play => _getText("lets_play");
 
+String get easy => _getText("easy");
+
+String get medium => _getText("medium");
+
+String get hard => _getText("hard");
+
+String get easy_description => _getText("easy_description");
+
+String get medium_description => _getText("medium_description");
+
+String get hard_description => _getText("hard_description");
+
 
 
   I18n(Locale locale) {
@@ -24,6 +36,12 @@ String get lets_play => _getText("lets_play");
 static Map<String, String> _enValues = {
               "good_morning": "Good morning,",
                 "lets_play": "Let's play !",
+                "easy": "Easy",
+                "medium": "Medium",
+                "hard": "Hard",
+                "easy_description": "One question, two choices",
+                "medium_description": "One question, four choices",
+                "hard_description": "One question, type the answer",
         };
     static Map<String, Map<String, String>> _allValues = {
             "en": _enValues,
