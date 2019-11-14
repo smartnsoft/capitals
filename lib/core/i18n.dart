@@ -21,18 +21,12 @@ String get lets_play => _getText("lets_play");
   static Map<String, String> _localizedValues;
 
         
-static Map<String, String> _frValues = {
-              "good_morning": "Salut,",
-                "lets_play": "Jouons ensemble !",
-        };
-      
 static Map<String, String> _enValues = {
               "good_morning": "Good morning,",
                 "lets_play": "Let's play !",
         };
     static Map<String, Map<String, String>> _allValues = {
-            "fr": _frValues,
-              "en": _enValues,
+            "en": _enValues,
       };
 
   static I18n of(BuildContext context) {
@@ -55,7 +49,7 @@ static Map<String, String> _enValues = {
 class I18nDelegate extends LocalizationsDelegate<I18n> {
   const I18nDelegate();
 
-  static final Set<Locale> supportedLocals = { Locale('fr'),Locale('en'), };
+  static final Set<Locale> supportedLocals = { Locale('en'), };
       
       @override
       bool isSupported(Locale locale) => supportedLocals.contains(locale);

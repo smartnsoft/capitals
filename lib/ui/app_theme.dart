@@ -45,12 +45,14 @@ class _TextStyles {
   TextStyle get bigScreenTitle => TextStyle(
         color: colors.black,
         fontSize: 40,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w700,
+        fontFamily: "ProxymaNova",
       );
 
   TextStyle get mediumWhiteLabel => TextStyle(
         color: Colors.white,
         fontSize: 18,
+        fontFamily: "ProxymaNova",
       );
 }
 
