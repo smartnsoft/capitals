@@ -7,6 +7,8 @@ class _Colors {
   Color get primaryAccent => Color(0xfff2bea1);
 
   Color get appBlack => Color(0xff212947);
+
+  Color get lightGrey => Color(0xffc6c6c7);
 }
 
 /// Values
@@ -49,6 +51,8 @@ class _Images {
   String get medium => "assets/images/medium.png";
 
   String get hard => "assets/images/hard.png";
+
+  String get icSearch => "assets/images/ic_search.png";
 }
 
 /// Texts Styles
@@ -80,6 +84,12 @@ class _TextStyles {
   TextStyle get mediumBlackText => TextStyle(
         color: colors.appBlack,
         fontSize: 14,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get smallLightGreyText => TextStyle(
+        color: colors.lightGrey,
+        fontSize: 12,
         fontFamily: "ProxymaNova",
       );
 }

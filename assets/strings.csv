@@ -7,3 +7,4 @@ hard,Hard
 easy_description,"One question, two choices"
 medium_description,"One question, four choices"
 hard_description,"One question, type the answer"
+search_hint,Search
