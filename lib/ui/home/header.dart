@@ -1,3 +1,4 @@
+import 'package:delayed_display/delayed_display.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/ranking_button.dart';
@@ -16,7 +17,11 @@ class Header extends StatelessWidget {
           Positioned(
             top: 20,
             right: 20,
-            child: RankingButton(),
+            child: DelayedDisplay(
+              delay: Duration(seconds: 1),
+              slidingBeginOffset: Offset(0.35, 0),
+              child: RankingButton(),
+            ),
           ),
           Positioned(
             top: 0,
