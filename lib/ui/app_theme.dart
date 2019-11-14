@@ -58,6 +58,8 @@ class _Images {
   String get icSearch => "assets/images/ic_search.png";
 
   String get madeWithFlutter => "assets/images/made_with_flutter.png";
+
+  String get icClose => "assets/images/ic_close.png";
 }
 
 /// Texts Styles

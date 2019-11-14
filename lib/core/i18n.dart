@@ -23,6 +23,10 @@ String get hard_description => _getText("hard_description");
 
 String get search_hint => _getText("search_hint");
 
+String get ranking => _getText("ranking");
+
+String get close => _getText("close");
+
 
 
   I18n(Locale locale) {
@@ -45,6 +49,8 @@ static Map<String, String> _enValues = {
                 "medium_description": "One question, four choices",
                 "hard_description": "One question, type the answer",
                 "search_hint": "Search",
+                "ranking": "Ranking",
+                "close": "Close",
         };
     static Map<String, Map<String, String>> _allValues = {
             "en": _enValues,

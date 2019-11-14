@@ -1,8 +1,8 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
-import 'package:flappy_capitals/ui/home/ranking_button.dart';
 import 'package:flappy_capitals/ui/home/search.dart';
+import 'package:flappy_capitals/ui/shared/responsive_button.dart';
 import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,16 @@ class Header extends StatelessWidget {
             child: DelayedDisplay(
               delay: Duration(seconds: 1),
               slidingBeginOffset: Offset(0.35, 0),
-              child: RankingButton(),
+              child: ResponsiveButton(
+                icon: Icon(
+                  Icons.show_chart,
+                  color: Colors.white,
+                ),
+                text: Text(
+                  I18n.of(context).ranking,
+                  style: AppTheme.of(context).textStyles.mediumWhiteLabel,
+                ),
+              ),
             ),
           ),
           Positioned(
