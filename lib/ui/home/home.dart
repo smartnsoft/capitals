@@ -3,6 +3,7 @@ import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/cell.dart';
 import 'package:flappy_capitals/ui/home/header.dart';
+import 'package:flappy_capitals/ui/quiz/easy_quiz/easy_quiz.dart';
 import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +43,9 @@ class Home extends StatelessWidget {
           imageAssetPath: AppTheme.of(context).images.easy,
           difficulty: I18n.of(context).easy,
           description: I18n.of(context).easy_description,
+          onTap: () {
+            Navigator.of(context).pushNamed(EasyQuiz.routeName);
+          },
         ),
       ),
       DelayedDisplay(

@@ -1,4 +1,5 @@
 import 'package:flappy_capitals/core/i18n.dart';
+import 'package:flappy_capitals/router.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/home.dart';
 import 'package:flutter/foundation.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: I18nDelegate.supportedLocals,
+        onGenerateRoute: Router.generateRoute,
         home: Home(),
       ),
     );

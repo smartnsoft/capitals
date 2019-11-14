@@ -6,12 +6,14 @@ class Cell extends StatelessWidget {
   final String imageAssetPath;
   final String difficulty;
   final String description;
+  final VoidCallback onTap;
 
   const Cell({
     Key key,
     this.imageAssetPath,
     this.difficulty,
     this.description,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -28,13 +30,19 @@ class Cell extends StatelessWidget {
         height: Utils.isBigScreen(context) ? bigCardHeight : smallCardHeight,
         width: Utils.isBigScreen(context) ? bigCardWidth : smallCardWidth,
         child: Card(
-          elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          child: _buildContent(
-            context,
-            imageAssetPath,
+          child: InkWell(
+            onTap: () {
+              if (onTap != null) {
+                onTap();
+              }
+            },
+            child: _buildContent(
+              context,
+              imageAssetPath,
+            ),
           ),
         ),
       ),
