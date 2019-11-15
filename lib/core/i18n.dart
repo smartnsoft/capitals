@@ -27,6 +27,8 @@ String get ranking => _getText("ranking");
 
 String get close => _getText("close");
 
+String get country => _getText("country");
+
 
 
   I18n(Locale locale) {
@@ -51,6 +53,7 @@ static Map<String, String> _enValues = {
                 "search_hint": "Search",
                 "ranking": "Ranking",
                 "close": "Close",
+                "country": "Country",
         };
     static Map<String, Map<String, String>> _allValues = {
             "en": _enValues,

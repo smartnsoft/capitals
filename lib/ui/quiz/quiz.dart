@@ -1,9 +1,13 @@
 import 'package:flappy_capitals/core/blocs/quiz_bloc/bloc.dart';
 import 'package:flappy_capitals/core/i18n.dart';
+import 'package:flappy_capitals/core/models/question.dart';
 import 'package:flappy_capitals/core/models/quiz_type.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
+import 'package:flappy_capitals/ui/quiz/answers.dart';
+import 'package:flappy_capitals/ui/quiz/question_widget.dart';
 import 'package:flappy_capitals/ui/quiz/quiz_progress_container.dart';
 import 'package:flappy_capitals/ui/shared/responsive_button.dart';
+import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,6 +43,9 @@ class Quiz extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ResponsiveButton(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
                 icon: Image.asset(
                   AppTheme.of(context).images.icClose,
                   height: 20,
@@ -60,24 +67,48 @@ class Quiz extends StatelessWidget {
                         ),
                       );
                     } else if (state is NewQuestion) {
+                      final Question question = state.question;
                       return Center(
-                        child: Text(state.question.countryName),
+                        child: Column(
+                          mainAxisAlignment:
+                              Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
+                          children: <Widget>[
+                            Utils.isBigScreen(context) ? Container() : Spacer(),
+                            _getCenteredWidget(context, question.countryName),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Answers(
+                              choices: question.possibilities,
+                            ),
+                          ],
+                        ),
                       );
                     }
 
-                    return Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[Text("ok")],
-                      ),
-                    );
+                    return Container();
                   },
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _getCenteredWidget(BuildContext context, String countryName) {
+    if (Utils.isBigScreen(context)) {
+      return Container(
+        child: QuestionWidget(
+          countryName: countryName,
+        ),
+      );
+    }
+
+    return Expanded(
+      child: QuestionWidget(
+        countryName: countryName,
       ),
     );
   }

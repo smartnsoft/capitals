@@ -1,4 +1,3 @@
-import 'package:delayed_display/delayed_display.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/cell.dart';
@@ -37,32 +36,23 @@ class Home extends StatelessWidget {
 
   Widget _buildCells(BuildContext context) {
     final List<Widget> cells = [
-      DelayedDisplay(
-        delay: Duration(milliseconds: 200),
-        child: Cell(
-          imageAssetPath: AppTheme.of(context).images.easy,
-          difficulty: I18n.of(context).easy,
-          description: I18n.of(context).easy_description,
-          onTap: () {
-            Navigator.of(context).pushNamed(QuizScreen.routeName);
-          },
-        ),
+      Cell(
+        imageAssetPath: AppTheme.of(context).images.easy,
+        difficulty: I18n.of(context).easy,
+        description: I18n.of(context).easy_description,
+        onTap: () {
+          Navigator.of(context).pushNamed(QuizScreen.routeName);
+        },
       ),
-      DelayedDisplay(
-        delay: Duration(milliseconds: 400),
-        child: Cell(
-          imageAssetPath: AppTheme.of(context).images.medium,
-          difficulty: I18n.of(context).medium,
-          description: I18n.of(context).medium_description,
-        ),
+      Cell(
+        imageAssetPath: AppTheme.of(context).images.medium,
+        difficulty: I18n.of(context).medium,
+        description: I18n.of(context).medium_description,
       ),
-      DelayedDisplay(
-        delay: Duration(milliseconds: 600),
-        child: Cell(
-          imageAssetPath: AppTheme.of(context).images.hard,
-          difficulty: I18n.of(context).hard,
-          description: I18n.of(context).hard_description,
-        ),
+      Cell(
+        imageAssetPath: AppTheme.of(context).images.hard,
+        difficulty: I18n.of(context).hard,
+        description: I18n.of(context).hard_description,
       ),
     ];
 

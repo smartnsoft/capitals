@@ -1,4 +1,3 @@
-import 'package:delayed_display/delayed_display.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/search.dart';
@@ -17,18 +16,14 @@ class Header extends StatelessWidget {
           Positioned(
             top: 20,
             right: 20,
-            child: DelayedDisplay(
-              delay: Duration(seconds: 1),
-              slidingBeginOffset: Offset(0.35, 0),
-              child: ResponsiveButton(
-                icon: Icon(
-                  Icons.show_chart,
-                  color: Colors.white,
-                ),
-                text: Text(
-                  I18n.of(context).ranking,
-                  style: AppTheme.of(context).textStyles.mediumWhiteLabel,
-                ),
+            child: ResponsiveButton(
+              icon: Icon(
+                Icons.show_chart,
+                color: Colors.white,
+              ),
+              text: Text(
+                I18n.of(context).ranking,
+                style: AppTheme.of(context).textStyles.mediumWhiteLabel,
               ),
             ),
           ),
