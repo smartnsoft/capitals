@@ -33,7 +33,7 @@ class Api {
         final Country country = countriesQueue.removeFirst();
         final List<String> generatedPossibilities = [country.capital];
 
-        for (int j = 0; j < nbAnswer; j++) {
+        for (int j = 0; j < nbAnswer - 1; j++) {
           final String capital = capitals[Random().nextInt(capitals.length - 1)];
           generatedPossibilities.add(capital);
         }

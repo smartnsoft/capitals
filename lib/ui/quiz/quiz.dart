@@ -4,7 +4,7 @@ import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/core/models/question.dart';
 import 'package:flappy_capitals/core/models/quiz_type.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
-import 'package:flappy_capitals/ui/quiz/answers.dart';
+import 'package:flappy_capitals/ui/quiz/choices/choices.dart';
 import 'package:flappy_capitals/ui/quiz/progress/quiz_progress_container.dart';
 import 'package:flappy_capitals/ui/quiz/question_widget.dart';
 import 'package:flappy_capitals/ui/shared/responsive_button.dart';
@@ -43,7 +43,7 @@ class Quiz extends StatelessWidget {
     return SafeArea(
       child: QuizProgressContainer(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(25.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -81,9 +81,9 @@ class Quiz extends StatelessWidget {
                             Utils.isBigScreen(context) ? Container() : Spacer(),
                             _getCenteredWidget(context, question.countryName),
                             SizedBox(
-                              height: 15,
+                              height: 25,
                             ),
-                            Answers(
+                            Choices(
                               choices: question.possibilities,
                             ),
                           ],
