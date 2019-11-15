@@ -1,6 +1,6 @@
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
-import 'package:flappy_capitals/ui/quiz/progress_bar.dart';
+import 'package:flappy_capitals/ui/quiz/progress/progress_bar.dart';
 import 'package:flutter/material.dart';
 
 class QuestionWidget extends StatelessWidget {
@@ -25,6 +25,7 @@ class QuestionWidget extends StatelessWidget {
         Text(
           countryName,
           style: AppTheme.of(context).textStyles.bigScreenTitle,
+          textAlign: TextAlign.center,
         ),
         SizedBox(
           height: 15,

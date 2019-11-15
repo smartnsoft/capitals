@@ -45,6 +45,9 @@ class _Values {
 
   /// Made with flutter height
   double get madeWithFlutterHeight => 25;
+
+  /// Horizontal ProgressBar width
+  double get horizontalProgressBarWidth => 500;
 }
 
 /// Images paths

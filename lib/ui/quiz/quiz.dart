@@ -1,11 +1,12 @@
+import 'package:flappy_capitals/core/blocs/progress_bloc/bloc.dart';
 import 'package:flappy_capitals/core/blocs/quiz_bloc/bloc.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/core/models/question.dart';
 import 'package:flappy_capitals/core/models/quiz_type.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/quiz/answers.dart';
+import 'package:flappy_capitals/ui/quiz/progress/quiz_progress_container.dart';
 import 'package:flappy_capitals/ui/quiz/question_widget.dart';
-import 'package:flappy_capitals/ui/quiz/quiz_progress_container.dart';
 import 'package:flappy_capitals/ui/shared/responsive_button.dart';
 import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +23,15 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<QuizBloc>(
-      builder: (BuildContext context) => QuizBloc()..add(StartQuiz()),
-      child: Scaffold(
-        backgroundColor: AppTheme.of(context).colors.primary,
-        body: Quiz(),
+    final ProgressBloc progressBloc = ProgressBloc();
+    return BlocProvider(
+      builder: (BuildContext context) => progressBloc,
+      child: BlocProvider<QuizBloc>(
+        builder: (BuildContext context) => QuizBloc(progressBloc: progressBloc)..add(StartQuiz()),
+        child: Scaffold(
+          backgroundColor: AppTheme.of(context).colors.primary,
+          body: Quiz(),
+        ),
       ),
     );
   }

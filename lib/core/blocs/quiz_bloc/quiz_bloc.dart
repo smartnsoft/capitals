@@ -1,15 +1,22 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flappy_capitals/core/blocs/progress_bloc/bloc.dart';
 import 'package:flappy_capitals/core/models/question.dart';
 import 'package:flappy_capitals/core/models/quiz_type.dart';
 import 'package:flappy_capitals/core/services/api.dart';
+import 'package:flutter/cupertino.dart';
 
 import './bloc.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
+  final ProgressBloc progressBloc;
   final List<Question> _questions = [];
   int _currentQuestionIndex = 0;
+
+  QuizBloc({
+    @required this.progressBloc,
+  });
 
   @override
   QuizState get initialState => InitialQuizState();
@@ -32,6 +39,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         _questions.addAll(questions);
 
         yield NewQuestion(question: _questions[_currentQuestionIndex]);
+        progressBloc.add(StartTimer(maxDurationInSeconds: 10));
       } catch (error) {
         yield QuizLoadingError(error);
       }
