@@ -73,22 +73,10 @@ class Quiz extends StatelessWidget {
                       );
                     } else if (state is NewQuestion) {
                       final Question question = state.question;
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment:
-                              Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
-                          children: <Widget>[
-                            Utils.isBigScreen(context) ? Container() : Spacer(),
-                            _getCenteredWidget(context, question.countryName),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            Choices(
-                              choices: question.possibilities,
-                            ),
-                          ],
-                        ),
-                      );
+                      return _buildQuestion(context, question);
+                    } else if (state is ShowAnswer) {
+                      final Question question = state.question;
+                      return _buildQuestion(context, question, showAnswer: true);
                     }
 
                     return Container();
@@ -98,6 +86,25 @@ class Quiz extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildQuestion(BuildContext context, Question question, {bool showAnswer = false}) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
+        children: <Widget>[
+          Utils.isBigScreen(context) ? Container() : Spacer(),
+          _getCenteredWidget(context, question.countryName),
+          SizedBox(
+            height: 25,
+          ),
+          Choices(
+            question: question,
+            showAnswer: showAnswer,
+          ),
+        ],
       ),
     );
   }

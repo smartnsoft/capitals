@@ -40,8 +40,26 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
         yield NewQuestion(question: _questions[_currentQuestionIndex]);
         progressBloc.add(StartTimer(maxDurationInSeconds: 10));
+        progressBloc.listen(_onProgressBlocChange);
       } catch (error) {
         yield QuizLoadingError(error);
+      }
+    }
+
+    if (event is SelectChoice) {
+      progressBloc.add(StopTimer());
+      yield ShowAnswer(question: _questions[_currentQuestionIndex]);
+    }
+
+    if (event is OutOfTime) {
+      yield ShowAnswer(question: _questions[_currentQuestionIndex]);
+    }
+  }
+
+  _onProgressBlocChange(ProgressState progressState) {
+    if (progressState is TimerProgressed) {
+      if (progressState.maxDurationInSeconds == progressState.progressionInSeconds) {
+        add(OutOfTime());
       }
     }
   }

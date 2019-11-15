@@ -32,3 +32,14 @@ class NewQuestion extends QuizState {
   @override
   String toString() => "NewQuestion { question: $question }";
 }
+
+class ShowAnswer extends QuizState {
+  final Question question;
+
+  ShowAnswer({
+    @required this.question,
+  });
+
+  @override
+  String toString() => "ShowAnswer { question: $question }";
+}

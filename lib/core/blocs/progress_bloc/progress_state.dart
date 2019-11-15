@@ -9,7 +9,7 @@ class TimerProgressed extends ProgressState {
 
   TimerProgressed({
     this.progressionInSeconds = 0,
-    this.maxDurationInSeconds = 0,
+    this.maxDurationInSeconds = 100,
   });
 
   @override

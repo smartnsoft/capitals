@@ -43,8 +43,8 @@ class Api {
         questions.add(
           Question(
             countryName: country.name,
-            response: country.capital,
-            possibilities: generatedPossibilities,
+            answer: country.capital,
+            choices: generatedPossibilities,
           ),
         );
       }

@@ -1,14 +1,14 @@
 class Question {
   final String countryName;
-  final String response;
-  final List<String> possibilities;
+  final String answer;
+  final List<String> choices;
 
   Question({
     this.countryName,
-    this.response,
-    this.possibilities,
+    this.answer,
+    this.choices,
   });
 
   @override
-  String toString() => "Question { countryName: $countryName, response: $response, possibilities: $possibilities }";
+  String toString() => "Question { countryName: $countryName, response: $answer, possibilities: $choices }";
 }

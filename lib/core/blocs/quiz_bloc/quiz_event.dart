@@ -14,3 +14,19 @@ class StartQuiz extends QuizEvent {
   @override
   String toString() => "StartQuiz { quizType: $quizType }";
 }
+
+class SelectChoice extends QuizEvent {
+  final String choice;
+
+  SelectChoice({
+    this.choice,
+  });
+
+  @override
+  String toString() => "SelectChoice { choice: $choice }";
+}
+
+class OutOfTime extends QuizEvent {
+  @override
+  String toString() => "OutOfTime";
+}

@@ -8,7 +8,9 @@ class _Colors {
 
   Color get appBlack => Color(0xff212947);
 
-  Color get appLightBlack => Color(0xff1e224f);
+  Color get appMediumBlack => Color(0xff1e224f);
+
+  Color get appLightBlack => Color(0xff1e2050);
 
   Color get lightGrey => Color(0xffc6c6c7);
 }
@@ -103,6 +105,12 @@ class _TextStyles {
   TextStyle get mediumBlackText => TextStyle(
         color: colors.appBlack,
         fontSize: 14,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get bigMediumBlackText => TextStyle(
+        color: colors.appMediumBlack,
+        fontSize: 28,
         fontFamily: "ProxymaNova",
       );
 

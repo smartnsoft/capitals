@@ -29,7 +29,7 @@ class ProgressBar extends StatelessWidget {
               if (state is TimerProgressed) {
                 double displayedProgression = 0.0;
                 if (state.maxDurationInSeconds > 0) {
-                  displayedProgression = (state.progressionInSeconds / state.maxDurationInSeconds) *
+                  displayedProgression = (state.progressionInSeconds / (state.maxDurationInSeconds - 1)) *
                       AppTheme.of(context).values.horizontalProgressBarWidth;
                 }
 

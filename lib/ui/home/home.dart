@@ -15,9 +15,14 @@ class Home extends StatelessWidget {
           height: _getScrollableHeight(context),
           child: Stack(
             children: <Widget>[
-              Container(
-                color: Colors.white,
-                child: Header(),
+              Column(
+                children: <Widget>[
+                  Container(
+                    color: Colors.white,
+                    child: Header(),
+                  ),
+                  Expanded(child: Container(color: Colors.white,),)
+                ],
               ),
               Positioned(
                 top: MediaQuery.of(context).size.height * AppTheme.of(context).values.headerHeightRatio -
