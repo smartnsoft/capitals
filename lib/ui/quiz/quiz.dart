@@ -93,7 +93,7 @@ class Quiz extends StatelessWidget {
   Widget _buildQuestion(BuildContext context, Question question, {bool showAnswer = false}) {
     return Center(
       child: Column(
-        mainAxisAlignment: Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.start,
+        mainAxisAlignment: Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Utils.isBigScreen(context) ? Container() : Spacer(),
           _getCenteredWidget(context, question.countryName),
@@ -119,6 +119,7 @@ class Quiz extends StatelessWidget {
     }
 
     return Expanded(
+      flex: 2,
       child: QuestionWidget(
         countryName: countryName,
       ),
