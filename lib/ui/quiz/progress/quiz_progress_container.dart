@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flappy_capitals/core/blocs/progress_bloc/bloc.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/utils.dart';
@@ -16,36 +18,48 @@ class QuizProgressContainer extends StatefulWidget {
   _QuizProgressContainerState createState() => _QuizProgressContainerState();
 }
 
-class _QuizProgressContainerState extends State<QuizProgressContainer> with SingleTickerProviderStateMixin {
-  int progressionInSeconds = 0;
-  int lastProgressionInSeconds = 0;
-  int maxDurationInSeconds = 0;
-  int _displayedProgression = 0;
-  Animation<int> _animation;
-  AnimationController _controller;
+class _QuizProgressContainerState extends State<QuizProgressContainer>
+    with SingleTickerProviderStateMixin {
+  double _percentage;
+  double _nextPercentage;
+  AnimationController _progressAnimationController;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: Duration(seconds: 10),
-      vsync: this,
-    );
+    _percentage = 0.0;
+    _nextPercentage = 0.0;
+    _initAnimationController();
+  }
 
-    _controller.forward();
+  _initAnimationController() {
+    _progressAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 10000),
+    )..addListener(() {
+        setState(() {
+          _percentage = lerpDouble(_percentage, _nextPercentage, _progressAnimationController.value);
+        });
+      });
+  }
+
+  _publishProgress(int progressionInSeconds, int maxDurationInSeconds) {
+    setState(() {
+      _percentage = _nextPercentage;
+      _nextPercentage = progressionInSeconds / maxDurationInSeconds;
+      _progressAnimationController.forward(from: _nextPercentage);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-
     if (Utils.isBigScreen(context)) return widget.child;
     return BlocListener(
       bloc: BlocProvider.of<ProgressBloc>(context),
       listener: (BuildContext context, ProgressState state) {
         if (state is TimerProgressed) {
           setState(() {
-            progressionInSeconds = state.progressionInSeconds;
-            maxDurationInSeconds = state.maxDurationInSeconds;
+            _publishProgress(state.progressionInSeconds, state.maxDurationInSeconds);
           });
         }
       },
@@ -55,7 +69,7 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
           defaultColor: AppTheme.of(context).colors.primaryAccent,
           containerBackground: AppTheme.of(context).colors.primary,
           progressColor: Colors.white,
-          progress: progressionInSeconds / maxDurationInSeconds,
+          progress: _percentage,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -100,7 +114,8 @@ class QuizProgressPainter extends CustomPainter {
 
     /// Draw container background
     paint.color = containerBackground;
-    final a = Rect.fromLTWH(borderSize, borderSize, size.width - borderSize * 2, size.height - borderSize * 2);
+    final a = Rect.fromLTWH(
+        borderSize, borderSize, size.width - borderSize * 2, size.height - borderSize * 2);
 
     canvas.drawRect(a, paint);
 
