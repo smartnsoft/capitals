@@ -29,7 +29,7 @@ class ProgressBar extends StatelessWidget {
               if (state is TimerProgressed) {
                 double displayedProgression = 0.0;
                 if (state.maxDurationInMilliseconds > 0) {
-                  displayedProgression = (state.progressionInMilliseconds / (state.maxDurationInMilliseconds - 1000)) *
+                  displayedProgression = (state.progressionInMilliseconds / (state.maxDurationInMilliseconds)) *
                       AppTheme.of(context).values.horizontalProgressBarWidth;
                 }
 
@@ -56,12 +56,13 @@ class ProgressBar extends StatelessWidget {
         color: AppTheme.of(context).colors.primaryAccent,
         borderRadius: BorderRadius.circular(20),
       ),
+      width: progression,
     );
 
     if (isAnimated) {
       return AnimatedContainer(
         padding: EdgeInsets.all(0),
-        duration: Duration(seconds: 1),
+        duration: Duration(milliseconds: ProgressBloc.INCREMENTED_TIME_IN_MS),
         width: progression,
         child: progressBar,
       );
