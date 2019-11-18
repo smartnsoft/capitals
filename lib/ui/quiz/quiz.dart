@@ -27,7 +27,7 @@ class QuizScreen extends StatelessWidget {
     return BlocProvider(
       builder: (BuildContext context) => progressBloc,
       child: BlocProvider<QuizBloc>(
-        builder: (BuildContext context) => QuizBloc(progressBloc: progressBloc)..add(StartQuiz()),
+        builder: (BuildContext context) => QuizBloc(progressBloc: progressBloc)..add(StartQuiz(quizType: quizType)),
         child: Scaffold(
           backgroundColor: AppTheme.of(context).colors.primary,
           body: Quiz(),

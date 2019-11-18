@@ -33,9 +33,13 @@ class Api {
         final Country country = countriesQueue.removeFirst();
         final List<String> generatedPossibilities = [country.capital];
 
-        for (int j = 0; j < nbAnswer - 1; j++) {
+        int answersIndex = 0;
+        while (answersIndex < nbAnswer - 1) {
           final String capital = capitals[Random().nextInt(capitals.length - 1)];
-          generatedPossibilities.add(capital);
+          if (!generatedPossibilities.contains(capital)) {
+            generatedPossibilities.add(capital);
+            answersIndex++;
+          }
         }
 
         generatedPossibilities.shuffle();

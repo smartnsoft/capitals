@@ -1,5 +1,6 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flappy_capitals/core/i18n.dart';
+import 'package:flappy_capitals/core/models/quiz_type.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/cell.dart';
 import 'package:flappy_capitals/ui/home/header.dart';
@@ -56,7 +57,10 @@ class Home extends StatelessWidget {
           difficulty: I18n.of(context).easy,
           description: I18n.of(context).easy_description,
           onTap: () {
-            Navigator.of(context).pushNamed(QuizScreen.routeName);
+            Navigator.of(context).pushNamed(
+              QuizScreen.routeName,
+              arguments: QuizType.easy,
+            );
           },
         ),
       ),
@@ -66,6 +70,12 @@ class Home extends StatelessWidget {
           imageAssetPath: AppTheme.of(context).images.medium,
           difficulty: I18n.of(context).medium,
           description: I18n.of(context).medium_description,
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              QuizScreen.routeName,
+              arguments: QuizType.medium,
+            );
+          },
         ),
       ),
       DelayedDisplay(

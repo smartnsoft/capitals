@@ -26,6 +26,7 @@ class Choices extends StatelessWidget {
         onTap: () => _onChoiceSelect(context, choice),
         showAnswer: showAnswer,
         isAnswer: choice == question.answer,
+        choiceCellType: choices.length <= 2 ? ChoiceCellType.normal : ChoiceCellType.small,
       );
     }).toList();
     if (choices.length <= 2) {
@@ -56,6 +57,21 @@ class Choices extends StatelessWidget {
   }
 
   Widget _buildMediumChoices(BuildContext context, List<Choice> choicesWidgets) {
-    return Container();
+    return Wrap(
+      spacing: 15,
+      alignment: WrapAlignment.center,
+      direction: Axis.vertical,
+      children: [
+        _buildMediumLine(context, choicesWidgets.sublist(0, 2)),
+        _buildMediumLine(context, choicesWidgets.sublist(2, 4)),
+      ],
+    );
+  }
+
+  Widget _buildMediumLine(BuildContext context, List<Choice> subList) {
+    return Wrap(
+      spacing: 15,
+      children: subList,
+    );
   }
 }
