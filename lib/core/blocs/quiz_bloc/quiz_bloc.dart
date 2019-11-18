@@ -48,7 +48,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     if (event is ShowNewQuestion) {
       _currentQuestionIndex++;
       yield NewQuestion(question: _questions[_currentQuestionIndex]);
-      progressBloc.add(StartTimer(maxDurationInMilliseconds: Duration(seconds: 4).inMilliseconds));
+      progressBloc.add(StartTimer(maxDurationInMilliseconds: Duration(seconds: 8).inMilliseconds));
     }
 
     if (event is SelectChoice) {

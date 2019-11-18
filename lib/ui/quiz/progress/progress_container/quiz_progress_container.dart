@@ -36,7 +36,7 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
   _initAnimationController() {
     _progressAnimationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 30),
+      duration: Duration(milliseconds: ProgressBloc.INCREMENTED_TIME_IN_MS),
     )..addListener(() {
         setState(() {
           _percentage = lerpDouble(_percentage, _nextPercentage, _progressAnimationController.value);
@@ -54,7 +54,7 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
     setState(() {
       _percentage = _nextPercentage;
       _nextPercentage = progressionInSeconds / maxDurationInSeconds;
-      _progressAnimationController.forward(from: _percentage);
+      _progressAnimationController.forward(from: 0.0);
     });
   }
 

@@ -109,5 +109,5 @@ class QuizProgressPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
+  bool shouldRepaint(QuizProgressPainter old) => old.progress != progress;
 }
