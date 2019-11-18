@@ -84,7 +84,7 @@ packages:
       name: delayed_display
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   dio:
     dependency: "direct main"
     description:
