@@ -16,3 +16,8 @@ class TimerProgressed extends ProgressState {
   String toString() =>
       "TimerProgressed { progressionInMilliseconds: $progressionInMilliseconds, maxDurationInMilliseconds: $maxDurationInMilliseconds }";
 }
+
+class ClearProgress extends ProgressState {
+  @override
+  String toString() => "ClearProgress";
+}

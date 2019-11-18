@@ -37,6 +37,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
         _questions.clear();
         _questions.addAll(questions);
+         progressBloc.listen(_onProgressBlocChange);
 
         add(ShowNewQuestion());
       } catch (error) {
@@ -47,24 +48,23 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     if (event is ShowNewQuestion) {
       _currentQuestionIndex++;
       yield NewQuestion(question: _questions[_currentQuestionIndex]);
-      progressBloc.add(
-        StartTimer(
-          maxDurationInMilliseconds: Duration(seconds: 4).inMilliseconds,
-        ),
-      );
-      progressBloc.listen(_onProgressBlocChange);
+      progressBloc.add(StartTimer(maxDurationInMilliseconds: Duration(seconds: 4).inMilliseconds));
     }
 
     if (event is SelectChoice) {
       progressBloc.add(StopTimer());
-      yield ShowAnswer(question: _questions[_currentQuestionIndex]);
-      await Future.delayed(Duration(seconds: 1));
-      add(ShowNewQuestion());
+      yield* _showAnswerAndNextQuestion();
     }
 
     if (event is OutOfTime) {
-      yield ShowAnswer(question: _questions[_currentQuestionIndex]);
+      yield* _showAnswerAndNextQuestion();
     }
+  }
+
+  Stream<QuizState> _showAnswerAndNextQuestion() async* {
+    yield ShowAnswer(question: _questions[_currentQuestionIndex]);
+    await Future.delayed(Duration(seconds: 1));
+    add(ShowNewQuestion());
   }
 
   _onProgressBlocChange(ProgressState progressState) {

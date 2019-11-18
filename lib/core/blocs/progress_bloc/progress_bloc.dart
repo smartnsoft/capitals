@@ -8,7 +8,7 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   Timer _timer;
   double _currentProgressionInMilliseconds = 0;
   int _maxDurationInMilliseconds = 0;
-  static const int INCREMENTED_TIME_IN_MS = 30;
+  static const int INCREMENTED_TIME_IN_MS = 100;
 
   @override
   ProgressState get initialState => TimerProgressed(progressionInMilliseconds: _currentProgressionInMilliseconds);
@@ -19,8 +19,13 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   ) async* {
     if (event is StartTimer) {
       if (_timer != null) {
-        _timer.cancel();
+        if (_timer.isActive) {
+          _timer.cancel();
+        }
+
+        _resetTimer();
         _timer = null;
+        yield ClearProgress();
       }
 
       _maxDurationInMilliseconds = event.maxDurationInMilliseconds;
@@ -39,12 +44,26 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
     }
   }
 
+  @override
+  Future<void> close() {
+    _timer.cancel();
+    _timer = null;
+    return super.close();
+  }
+
+  _resetTimer() {
+    _currentProgressionInMilliseconds = 0;
+    _maxDurationInMilliseconds = 1000;
+  }
+
   _onTimerTick(Timer timer) {
-    if (_currentProgressionInMilliseconds >= _maxDurationInMilliseconds) {
-      add(StopTimer());
-    } else {
-      _currentProgressionInMilliseconds += INCREMENTED_TIME_IN_MS;
-      add(NotifyProgress());
+    if (timer.isActive) {
+      if (_currentProgressionInMilliseconds >= _maxDurationInMilliseconds) {
+        add(StopTimer());
+      } else {
+        _currentProgressionInMilliseconds += INCREMENTED_TIME_IN_MS;
+        add(NotifyProgress());
+      }
     }
   }
 }

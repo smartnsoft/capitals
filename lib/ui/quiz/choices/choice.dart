@@ -47,12 +47,12 @@ class Choice extends StatelessWidget {
       return content;
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: onTap,
-        enableFeedback: !showAnswer,
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: onTap,
+      enableFeedback: !showAnswer,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: content,
       ),
     );

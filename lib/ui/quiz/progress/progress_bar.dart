@@ -33,17 +33,9 @@ class ProgressBar extends StatelessWidget {
                       AppTheme.of(context).values.horizontalProgressBarWidth;
                 }
 
-                return AnimatedContainer(
-                  padding: EdgeInsets.all(0),
-                  duration: Duration(seconds: 1),
-                  width: displayedProgression,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: AppTheme.of(context).colors.primaryAccent,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                );
+                return _buildProgressBar(context, displayedProgression);
+              } else if (state is ClearProgress) {
+                return _buildProgressBar(context, 0, isAnimated: false);
               }
               return Container();
             },
@@ -51,5 +43,29 @@ class ProgressBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildProgressBar(
+    BuildContext context,
+    double progression, {
+    bool,
+    isAnimated = true,
+  }) {
+    final Widget progressBar = Container(
+      decoration: BoxDecoration(
+        color: AppTheme.of(context).colors.primaryAccent,
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
+    if (isAnimated) {
+      return AnimatedContainer(
+        padding: EdgeInsets.all(0),
+        duration: Duration(seconds: 1),
+        width: progression,
+        child: progressBar,
+      );
+    }
+    return progressBar;
   }
 }
