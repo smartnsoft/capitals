@@ -83,7 +83,4 @@ class Choice extends StatelessWidget {
     return AppTheme.of(context).textStyles.bigMediumBlackText;
   }
 
-  /// Return weather a name is composed or not
-  /// The idea is to keep simple name on one line
-  bool _isComposedName(String name) => name.contains(" ") || name.contains("-");
 }
