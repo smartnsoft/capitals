@@ -4,15 +4,15 @@ import 'package:meta/meta.dart';
 abstract class ProgressState {}
 
 class TimerProgressed extends ProgressState {
-  final int progressionInSeconds;
-  final int maxDurationInSeconds;
+  final double progressionInMilliseconds;
+  final int maxDurationInMilliseconds;
 
   TimerProgressed({
-    this.progressionInSeconds = 0,
-    this.maxDurationInSeconds = 100,
+    this.progressionInMilliseconds = 0,
+    this.maxDurationInMilliseconds = 100,
   });
 
   @override
   String toString() =>
-      "TimerProgressed { progressionInSeconds: $progressionInSeconds, maxDurationInSeconds: $maxDurationInSeconds }";
+      "TimerProgressed { progressionInMilliseconds: $progressionInMilliseconds, maxDurationInMilliseconds: $maxDurationInMilliseconds }";
 }

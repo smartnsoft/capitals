@@ -26,6 +26,11 @@ class SelectChoice extends QuizEvent {
   String toString() => "SelectChoice { choice: $choice }";
 }
 
+class ShowNewQuestion extends QuizEvent {
+  @override
+  String toString() => "ShowNewQuestion";
+}
+
 class OutOfTime extends QuizEvent {
   @override
   String toString() => "OutOfTime";

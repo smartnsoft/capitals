@@ -12,7 +12,7 @@ import './bloc.dart';
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
   final ProgressBloc progressBloc;
   final List<Question> _questions = [];
-  int _currentQuestionIndex = 0;
+  int _currentQuestionIndex = -1;
 
   QuizBloc({
     @required this.progressBloc,
@@ -38,17 +38,28 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         _questions.clear();
         _questions.addAll(questions);
 
-        yield NewQuestion(question: _questions[_currentQuestionIndex]);
-        progressBloc.add(StartTimer(maxDurationInSeconds: 10));
-        progressBloc.listen(_onProgressBlocChange);
+        add(ShowNewQuestion());
       } catch (error) {
         yield QuizLoadingError(error);
       }
     }
 
+    if (event is ShowNewQuestion) {
+      _currentQuestionIndex++;
+      yield NewQuestion(question: _questions[_currentQuestionIndex]);
+      progressBloc.add(
+        StartTimer(
+          maxDurationInMilliseconds: Duration(seconds: 4).inMilliseconds,
+        ),
+      );
+      progressBloc.listen(_onProgressBlocChange);
+    }
+
     if (event is SelectChoice) {
       progressBloc.add(StopTimer());
       yield ShowAnswer(question: _questions[_currentQuestionIndex]);
+      await Future.delayed(Duration(seconds: 1));
+      add(ShowNewQuestion());
     }
 
     if (event is OutOfTime) {
@@ -58,7 +69,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
   _onProgressBlocChange(ProgressState progressState) {
     if (progressState is TimerProgressed) {
-      if (progressState.maxDurationInSeconds == progressState.progressionInSeconds) {
+      if (progressState.progressionInMilliseconds >= progressState.maxDurationInMilliseconds) {
         add(OutOfTime());
       }
     }

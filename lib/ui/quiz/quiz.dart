@@ -5,7 +5,7 @@ import 'package:flappy_capitals/core/models/question.dart';
 import 'package:flappy_capitals/core/models/quiz_type.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/quiz/choices/choices.dart';
-import 'package:flappy_capitals/ui/quiz/progress/quiz_progress_container.dart';
+import 'package:flappy_capitals/ui/quiz/progress/progress_container/quiz_progress_container.dart';
 import 'package:flappy_capitals/ui/quiz/question_widget.dart';
 import 'package:flappy_capitals/ui/shared/responsive_button.dart';
 import 'package:flappy_capitals/utils.dart';

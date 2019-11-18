@@ -6,11 +6,12 @@ import './bloc.dart';
 
 class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   Timer _timer;
-  int _currentProgressionInSeconds = 0;
-  int _maxDurationInSeconds = 0;
+  double _currentProgressionInMilliseconds = 0;
+  int _maxDurationInMilliseconds = 0;
+  static const int INCREMENTED_TIME_IN_MS = 30;
 
   @override
-  ProgressState get initialState => TimerProgressed(progressionInSeconds: _currentProgressionInSeconds);
+  ProgressState get initialState => TimerProgressed(progressionInMilliseconds: _currentProgressionInMilliseconds);
 
   @override
   Stream<ProgressState> mapEventToState(
@@ -22,14 +23,14 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
         _timer = null;
       }
 
-      _maxDurationInSeconds = event.maxDurationInSeconds;
-      _timer = Timer.periodic(Duration(seconds: 1), _onTimerTick);
+      _maxDurationInMilliseconds = event.maxDurationInMilliseconds;
+      _timer = Timer.periodic(Duration(milliseconds: INCREMENTED_TIME_IN_MS), _onTimerTick);
     }
 
     if (event is NotifyProgress) {
       yield TimerProgressed(
-        progressionInSeconds: _currentProgressionInSeconds,
-        maxDurationInSeconds: _maxDurationInSeconds,
+        progressionInMilliseconds: _currentProgressionInMilliseconds,
+        maxDurationInMilliseconds: _maxDurationInMilliseconds,
       );
     }
 
@@ -39,10 +40,10 @@ class ProgressBloc extends Bloc<ProgressEvent, ProgressState> {
   }
 
   _onTimerTick(Timer timer) {
-    if (_currentProgressionInSeconds >= _maxDurationInSeconds) {
+    if (_currentProgressionInMilliseconds >= _maxDurationInMilliseconds) {
       add(StopTimer());
     } else {
-      _currentProgressionInSeconds += 1;
+      _currentProgressionInMilliseconds += INCREMENTED_TIME_IN_MS;
       add(NotifyProgress());
     }
   }

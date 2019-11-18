@@ -4,14 +4,14 @@ import 'package:meta/meta.dart';
 abstract class ProgressEvent {}
 
 class StartTimer extends ProgressEvent {
-  final int maxDurationInSeconds;
+  final int maxDurationInMilliseconds;
 
   StartTimer({
-    @required this.maxDurationInSeconds,
+    @required this.maxDurationInMilliseconds,
   });
 
   @override
-  String toString() => "StartTimer { maxDurationInSeconds: $maxDurationInSeconds }";
+  String toString() => "StartTimer { maxDurationInMilliseconds: $maxDurationInMilliseconds }";
 }
 
 class NotifyProgress extends ProgressEvent {
