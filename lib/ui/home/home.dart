@@ -20,7 +20,10 @@ class Home extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     color: Colors.white,
-                    child: Header(),
+                    child: DelayedDisplay(
+                      delay: Duration(milliseconds: 200),
+                      child: Header(),
+                    ),
                   ),
                   Expanded(
                     child: Container(
@@ -92,7 +95,7 @@ class Home extends StatelessWidget {
       children: <Widget>[
         cellsWidgets,
         Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
+          padding: const EdgeInsets.only(bottom: 20.0),
           child: Image.asset(
             AppTheme.of(context).images.madeWithFlutter,
             height: AppTheme.of(context).values.madeWithFlutterHeight,

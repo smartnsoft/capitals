@@ -44,9 +44,6 @@ class QuizProgressPainter extends CustomPainter {
     final double horizontalLinePercent = size.width / totalPerimeter;
     final double verticalLinePercent = size.height / totalPerimeter;
 
-    print("PROGRESS TO DRAW = $progressToDraw");
-    print("horizontalLinePercent : $horizontalLinePercent");
-    print("verticalLinePercent : $verticalLinePercent");
     if (progressToDraw <= horizontalLinePercent && progressToDraw > 0) {
       canvas.drawLine(
         Offset(0, 0),

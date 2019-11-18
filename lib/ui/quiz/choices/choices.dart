@@ -20,14 +20,14 @@ class Choices extends StatelessWidget {
     final List<String> choices = question.choices;
     if (choices.isEmpty) return Container();
 
-    final List<Choice> choicesWidgets = choices
-        .map((choice) => Choice(
-              choice: choice,
-              onTap: () => _onChoiceSelect(context, choice),
-              showAnswer: showAnswer,
-              isAnswer: choice == question.answer,
-            ))
-        .toList();
+    final List<Choice> choicesWidgets = choices.map((choice) {
+      return Choice(
+        choice: choice,
+        onTap: () => _onChoiceSelect(context, choice),
+        showAnswer: showAnswer,
+        isAnswer: choice == question.answer,
+      );
+    }).toList();
     if (choices.length <= 2) {
       return _buildEasyChoices(context, choicesWidgets);
     } else {

@@ -19,7 +19,7 @@ class Choice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 120,
-      width: 320 > MediaQuery.of(context).size.width * .8 ? MediaQuery.of(context).size.width * .8 : 320,
+      width: 320 > MediaQuery.of(context).size.width * .6 ? MediaQuery.of(context).size.width * .6 : 320,
       decoration: BoxDecoration(
         color: showAnswer && !isAnswer ? Colors.white10 : Colors.white,
         borderRadius: BorderRadius.circular(20),

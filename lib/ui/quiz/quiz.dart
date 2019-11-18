@@ -91,20 +91,23 @@ class Quiz extends StatelessWidget {
   }
 
   Widget _buildQuestion(BuildContext context, Question question, {bool showAnswer = false}) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Utils.isBigScreen(context) ? Container() : Spacer(),
-          _getCenteredWidget(context, question.countryName),
-          SizedBox(
-            height: 25,
-          ),
-          Choices(
-            question: question,
-            showAnswer: showAnswer,
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: Utils.isBigScreen(context) ? MainAxisAlignment.center : MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Utils.isBigScreen(context) ? Container() : Spacer(),
+            _getCenteredWidget(context, question.countryName),
+            SizedBox(
+              height: 25,
+            ),
+            Choices(
+              question: question,
+              showAnswer: showAnswer,
+            ),
+          ],
+        ),
       ),
     );
   }
