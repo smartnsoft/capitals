@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +36,9 @@ class Choice extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     final Widget content = Center(
-      child: Text(
+      child: AutoSizeText(
         choice,
+        maxLines: 1,
         style: _getStyle(context),
       ),
     );
@@ -45,11 +47,14 @@ class Choice extends StatelessWidget {
       return content;
     }
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: onTap,
-      enableFeedback: !showAnswer,
-      child: content,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: onTap,
+        enableFeedback: !showAnswer,
+        child: content,
+      ),
     );
   }
 

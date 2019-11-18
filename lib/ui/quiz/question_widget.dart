@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/quiz/progress/progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class QuestionWidget extends StatelessWidget {
   final String countryName;
@@ -17,15 +19,17 @@ class QuestionWidget extends StatelessWidget {
       children: <Widget>[
         Text(
           I18n.of(context).country,
-          style: AppTheme.of(context).textStyles.mediumWhiteLabel.copyWith(color: AppTheme.of(context).colors.appBlack),
+          style: AppTheme.of(context).textStyles.mediumWhiteLabel.copyWith(color: AppTheme.of(context).colors.appBlack,),
         ),
         SizedBox(
           height: 15,
         ),
         Text(
           countryName,
-          style: AppTheme.of(context).textStyles.bigScreenTitle,
+          style: AppTheme.of(context).textStyles.bigScreenTitle.copyWith(fontSize: MediaQuery.of(context).size.height * .05),
           textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
         ),
         SizedBox(
           height: 15,
