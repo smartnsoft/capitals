@@ -15,17 +15,10 @@ class QuizProgressPainter extends CustomPainter {
     this.borderSize,
   });
 
-  Paint getPaint(Color color) {
-    return Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke;
-  }
-
   @override
   void paint(Canvas canvas, Size size) {
     /// Draw default rectangle
-    final paint = Paint();
-    paint.color = defaultColor;
+    final paint = Paint()..color = defaultColor;
     final rect = Rect.fromLTWH(
       0,
       0,

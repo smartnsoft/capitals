@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
+import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 
 enum ChoiceCellType {
@@ -26,7 +27,7 @@ class Choice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: _getHeight(context),
       width: _getWidth(context),
       decoration: BoxDecoration(
         color: showAnswer && !isAnswer ? Colors.white10 : Colors.white,
@@ -41,9 +42,19 @@ class Choice extends StatelessWidget {
     );
   }
 
+  double _getHeight(BuildContext context) {
+    if (choiceCellType == ChoiceCellType.small) {
+      return 80;
+    }
+
+    return Utils.isBigScreen(context) ? 120 : 90;
+  }
+
   double _getWidth(BuildContext context) {
-    if (choiceCellType == ChoiceCellType.small) return MediaQuery.of(context).size.width * .35;
-    return 320 > MediaQuery.of(context).size.width * .7 ? MediaQuery.of(context).size.width * .7 : 320;
+    if (choiceCellType == ChoiceCellType.small) {
+      return MediaQuery.of(context).size.width * .3;
+    }
+    return 320 > MediaQuery.of(context).size.width * .6 ? MediaQuery.of(context).size.width * .6 : 320;
   }
 
   Widget _buildContent(BuildContext context) {
@@ -54,7 +65,7 @@ class Choice extends StatelessWidget {
           choice,
           maxLines: 2,
           style: _getStyle(context),
-          minFontSize: 22,
+          minFontSize: Utils.isBigScreen(context) ? 22 : 16,
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
         ),
@@ -75,12 +86,24 @@ class Choice extends StatelessWidget {
 
   TextStyle _getStyle(BuildContext context) {
     if (showAnswer) {
-      return isAnswer
-          ? AppTheme.of(context).textStyles.bigMediumBlackText.copyWith(fontWeight: FontWeight.bold)
-          : AppTheme.of(context).textStyles.bigLightBlackText;
+      if (isAnswer) {
+        if (Utils.isBigScreen(context)) {
+          return AppTheme.of(context).textStyles.bigMediumBlackText.copyWith(
+                fontWeight: FontWeight.bold,
+              );
+        }
+        return AppTheme.of(context).textStyles.littleMediumBlackText.copyWith(
+              fontWeight: FontWeight.bold,
+            );
+      } else {
+        return Utils.isBigScreen(context)
+            ? AppTheme.of(context).textStyles.bigLightBlackText
+            : AppTheme.of(context).textStyles.littleLightBlackText;
+      }
     }
 
-    return AppTheme.of(context).textStyles.bigMediumBlackText;
+    return Utils.isBigScreen(context)
+        ? AppTheme.of(context).textStyles.bigMediumBlackText
+        : AppTheme.of(context).textStyles.littleMediumBlackText;
   }
-
 }

@@ -19,17 +19,23 @@ class QuestionWidget extends StatelessWidget {
       children: <Widget>[
         Text(
           I18n.of(context).country,
-          style: AppTheme.of(context).textStyles.mediumWhiteLabel.copyWith(color: AppTheme.of(context).colors.appBlack,),
+          style: AppTheme.of(context).textStyles.mediumWhiteLabel.copyWith(
+                color: AppTheme.of(context).colors.appBlack,
+              ),
         ),
         SizedBox(
           height: 15,
         ),
-        Text(
+        AutoSizeText(
           countryName,
-          style: AppTheme.of(context).textStyles.bigScreenTitle.copyWith(fontSize: MediaQuery.of(context).size.height * .05),
+          style: AppTheme.of(context)
+              .textStyles
+              .bigScreenTitle
+              .copyWith(fontSize: MediaQuery.of(context).size.height * .05),
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
+          minFontSize: 20,
         ),
         SizedBox(
           height: 15,

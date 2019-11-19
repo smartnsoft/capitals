@@ -89,7 +89,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   int _nbQuestionsByQuizType(QuizType quizType) {
-    return 2;
+    return 20;
   }
 
   int _nbAnswersByQuizType(QuizType quizType) {

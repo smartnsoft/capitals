@@ -59,7 +59,7 @@ class _Values {
   double get progressContainerBorderSize => 20;
 
   /// Padding value of the elements inside the ProgressContainer
-  double get paddingInsideProgressContainer => 25;
+  double get paddingInsideProgressContainer => 8;
 }
 
 /// Images paths
@@ -124,9 +124,21 @@ class _TextStyles {
         fontFamily: "ProxymaNova",
       );
 
+  TextStyle get littleMediumBlackText => TextStyle(
+        color: colors.appMediumBlack,
+        fontSize: 18,
+        fontFamily: "ProxymaNova",
+      );
+
   TextStyle get bigLightBlackText => TextStyle(
         color: colors.appLightBlack,
         fontSize: 28,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get littleLightBlackText => TextStyle(
+        color: colors.appLightBlack,
+        fontSize: 18,
         fontFamily: "ProxymaNova",
       );
 

@@ -25,6 +25,8 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
   double _nextPercentage;
   AnimationController _progressAnimationController;
 
+  Widget get child => widget.child;
+
   @override
   void initState() {
     super.initState();
@@ -37,11 +39,17 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
     _progressAnimationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: ProgressBloc.INCREMENTED_TIME_IN_MS),
-    )..addListener(() {
-        setState(() {
-          _percentage = lerpDouble(_percentage, _nextPercentage, _progressAnimationController.value);
-        });
-      });
+    )..addListener(
+        () {
+          setState(() {
+            _percentage = lerpDouble(
+              _percentage,
+              _nextPercentage,
+              _progressAnimationController.value,
+            );
+          });
+        },
+      );
   }
 
   @override
@@ -60,30 +68,39 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
 
   @override
   Widget build(BuildContext context) {
-    if (Utils.isBigScreen(context)) return widget.child;
+    if (Utils.isBigScreen(context)) return child;
+    Utils.makeStatusBarNormal(color: AppTheme.of(context).colors.primaryAccent);
     return BlocListener(
       bloc: BlocProvider.of<ProgressBloc>(context),
       listener: (BuildContext context, ProgressState state) {
         if (state is TimerProgressed) {
           setState(() {
-            _publishProgress(state.progressionInMilliseconds, state.maxDurationInMilliseconds);
+            _publishProgress(
+              state.progressionInMilliseconds,
+              state.maxDurationInMilliseconds,
+            );
           });
         }
       },
-      child: CustomPaint(
-        size: Size.infinite,
-        painter: QuizProgressPainter(
-          defaultColor: AppTheme.of(context).colors.primaryAccent,
-          containerBackground: AppTheme.of(context).colors.primary,
-          borderSize: AppTheme.of(context).values.progressContainerBorderSize,
-          progressColor: Colors.white,
-          progress: _percentage,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            child: widget.child,
+      child: SafeArea(
+        child: CustomPaint(
+          painter: QuizProgressPainter(
+            defaultColor: AppTheme.of(context).colors.primaryAccent,
+            containerBackground: AppTheme.of(context).colors.primary,
+            borderSize: AppTheme.of(context).values.progressContainerBorderSize,
+            progressColor: Colors.white,
+            progress: _percentage,
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(
+                AppTheme.of(context).values.paddingInsideProgressContainer,
+              ),
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: child,
+              ),
+            ),
           ),
         ),
       ),
