@@ -30,6 +30,7 @@ class Cell extends StatelessWidget {
         height: Utils.isBigScreen(context) ? bigCardHeight : smallCardHeight,
         width: Utils.isBigScreen(context) ? bigCardWidth : smallCardWidth,
         child: Card(
+          elevation: 3,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
