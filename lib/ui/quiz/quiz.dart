@@ -3,10 +3,12 @@ import 'package:flappy_capitals/core/blocs/quiz_bloc/bloc.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/core/models/question.dart';
 import 'package:flappy_capitals/core/models/quiz_type.dart';
+import 'package:flappy_capitals/core/models/score.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/quiz/choices/choices.dart';
 import 'package:flappy_capitals/ui/quiz/progress/progress_container/quiz_progress_container.dart';
 import 'package:flappy_capitals/ui/quiz/question_widget.dart';
+import 'package:flappy_capitals/ui/quiz/result/result.dart';
 import 'package:flappy_capitals/ui/shared/responsive_button.dart';
 import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
@@ -40,54 +42,66 @@ class QuizScreen extends StatelessWidget {
 class Quiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: QuizProgressContainer(
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              ResponsiveButton(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                icon: Image.asset(
-                  AppTheme.of(context).images.icClose,
-                  height: 20,
-                  width: 20,
-                ),
-                text: Text(
-                  I18n.of(context).close,
-                  style: AppTheme.of(context).textStyles.mediumWhiteLabel,
-                ),
-              ),
-              Expanded(
-                child: BlocBuilder(
-                  bloc: BlocProvider.of<QuizBloc>(context),
-                  builder: (BuildContext context, QuizState state) {
-                    if (state is QuizLoading) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      );
-                    } else if (state is NewQuestion) {
-                      final Question question = state.question;
-                      return _buildQuestion(context, question);
-                    } else if (state is ShowAnswer) {
-                      final Question question = state.question;
-                      return _buildQuestion(context, question, showAnswer: true);
-                    }
-
-                    return Container();
+    return BlocListener(
+      bloc: BlocProvider.of<QuizBloc>(context),
+      listener: (BuildContext context, QuizState state) {
+        if (state is ShowScore) {
+          _goToResult(context, Score(points: state.score, maxPoints: state.max));
+        }
+      },
+      child: SafeArea(
+        child: QuizProgressContainer(
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ResponsiveButton(
+                  onTap: () {
+                    Navigator.of(context).pop();
                   },
+                  icon: Image.asset(
+                    AppTheme.of(context).images.icClose,
+                    height: 20,
+                    width: 20,
+                  ),
+                  text: Text(
+                    I18n.of(context).close,
+                    style: AppTheme.of(context).textStyles.mediumWhiteLabel,
+                  ),
                 ),
-              ),
-            ],
+                Expanded(
+                  child: BlocBuilder(
+                    bloc: BlocProvider.of<QuizBloc>(context),
+                    builder: (BuildContext context, QuizState state) {
+                      if (state is QuizLoading) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        );
+                      } else if (state is NewQuestion) {
+                        final Question question = state.question;
+                        return _buildQuestion(context, question);
+                      } else if (state is ShowAnswer) {
+                        final Question question = state.question;
+                        return _buildQuestion(context, question, showAnswer: true);
+                      }
+
+                      return Container();
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  _goToResult(BuildContext context, Score score) {
+    Navigator.of(context).pushReplacementNamed(ResultScreen.routeName, arguments: score);
   }
 
   Widget _buildQuestion(BuildContext context, Question question, {bool showAnswer = false}) {

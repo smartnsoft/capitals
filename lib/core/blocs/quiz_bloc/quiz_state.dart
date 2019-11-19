@@ -43,3 +43,16 @@ class ShowAnswer extends QuizState {
   @override
   String toString() => "ShowAnswer { question: $question }";
 }
+
+class ShowScore extends QuizState {
+  final int score;
+  final int max;
+
+  ShowScore({
+    @required this.score,
+    @required this.max,
+  });
+
+  @override
+  String toString() => "ShowScore { score: $score, max: $max }";
+}

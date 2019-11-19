@@ -1,6 +1,8 @@
 import 'package:flappy_capitals/core/models/quiz_type.dart';
+import 'package:flappy_capitals/core/models/score.dart';
 import 'package:flappy_capitals/ui/home/home.dart';
 import 'package:flappy_capitals/ui/quiz/quiz.dart';
+import 'package:flappy_capitals/ui/quiz/result/result.dart';
 import 'package:flutter/material.dart';
 
 class Router {
@@ -14,6 +16,17 @@ class Router {
         return MaterialPageRoute(
           builder: (BuildContext context) => QuizScreen(
             quizType: quizType,
+          ),
+        );
+        break;
+      case ResultScreen.routeName:
+        Score score = Score(points: 0, maxPoints: 0);
+        if (routeSettings.arguments is Score) {
+          score = routeSettings.arguments;
+        }
+        return MaterialPageRoute(
+          builder: (BuildContext context) => ResultScreen(
+            score: score,
           ),
         );
         break;

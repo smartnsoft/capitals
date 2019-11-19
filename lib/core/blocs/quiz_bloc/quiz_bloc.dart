@@ -13,6 +13,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   final ProgressBloc progressBloc;
   final List<Question> _questions = [];
   int _currentQuestionIndex = -1;
+  int _score;
 
   QuizBloc({
     @required this.progressBloc,
@@ -37,7 +38,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
         _questions.clear();
         _questions.addAll(questions);
-         progressBloc.listen(_onProgressBlocChange);
+        _score = 0;
+        progressBloc.listen(_onProgressBlocChange);
 
         add(ShowNewQuestion());
       } catch (error) {
@@ -53,6 +55,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
     if (event is SelectChoice) {
       progressBloc.add(StopTimer());
+      if (event.choice == _questions[_currentQuestionIndex].answer) {
+        _score++;
+      }
       yield* _showAnswerAndNextQuestion();
     }
 
@@ -64,7 +69,15 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   Stream<QuizState> _showAnswerAndNextQuestion() async* {
     yield ShowAnswer(question: _questions[_currentQuestionIndex]);
     await Future.delayed(Duration(seconds: 1));
-    add(ShowNewQuestion());
+
+    if (_currentQuestionIndex == _questions.length - 1) {
+      yield ShowScore(
+        score: _score,
+        max: _questions.length,
+      );
+    } else {
+      add(ShowNewQuestion());
+    }
   }
 
   _onProgressBlocChange(ProgressState progressState) {
@@ -76,7 +89,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   int _nbQuestionsByQuizType(QuizType quizType) {
-    return 20;
+    return 5;
   }
 
   int _nbAnswersByQuizType(QuizType quizType) {
