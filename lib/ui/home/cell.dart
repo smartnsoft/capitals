@@ -34,6 +34,7 @@ class Cell extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: InkWell(
+            borderRadius: BorderRadius.circular(15),
             onTap: () {
               if (onTap != null) {
                 onTap();
