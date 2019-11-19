@@ -52,7 +52,8 @@ class Quiz extends StatelessWidget {
       child: QuizProgressContainer(
         child: Padding(
           padding: EdgeInsets.all(
-            AppTheme.of(context).values.paddingInsideProgressContainer,
+            AppTheme.of(context).values.progressContainerBorderSize +
+                AppTheme.of(context).values.paddingInsideProgressContainer,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
