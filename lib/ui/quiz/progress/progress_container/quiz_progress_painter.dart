@@ -5,12 +5,14 @@ class QuizProgressPainter extends CustomPainter {
   final Color containerBackground;
   final Color progressColor;
   final double progress;
+  final double borderSize;
 
   QuizProgressPainter({
     this.defaultColor,
     this.containerBackground,
     this.progressColor,
     this.progress,
+    this.borderSize,
   });
 
   Paint getPaint(Color color) {
@@ -23,7 +25,6 @@ class QuizProgressPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     /// Draw default rectangle
     final paint = Paint();
-    final double borderSize = 20;
     paint.color = defaultColor;
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
 

@@ -52,7 +52,7 @@ class Quiz extends StatelessWidget {
       child: SafeArea(
         child: QuizProgressContainer(
           child: Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: EdgeInsets.all(AppTheme.of(context).values.paddingInsideProgressContainer),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

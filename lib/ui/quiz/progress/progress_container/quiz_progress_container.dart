@@ -75,6 +75,7 @@ class _QuizProgressContainerState extends State<QuizProgressContainer> with Sing
         painter: QuizProgressPainter(
           defaultColor: AppTheme.of(context).colors.primaryAccent,
           containerBackground: AppTheme.of(context).colors.primary,
+          borderSize: AppTheme.of(context).values.progressContainerBorderSize,
           progressColor: Colors.white,
           progress: _percentage,
         ),

@@ -6,6 +6,8 @@ class _Colors {
 
   Color get primaryAccent => Color(0xfff2bea1);
 
+  Color get appDarkBlack => Color(0xff1e234e);
+
   Color get appBlack => Color(0xff212947);
 
   Color get appMediumBlack => Color(0xff1e224f);
@@ -52,6 +54,12 @@ class _Values {
 
   /// Horizontal ProgressBar width
   double get horizontalProgressBarWidth => 500;
+
+  /// Progress Container border size
+  double get progressContainerBorderSize => 20;
+
+  /// Padding value of the elements inside the ProgressContainer
+  double get paddingInsideProgressContainer => 25;
 }
 
 /// Images paths
@@ -123,6 +131,19 @@ class _TextStyles {
   TextStyle get smallLightGreyText => TextStyle(
         color: colors.lightGrey,
         fontSize: 12,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get scoreStyleText => TextStyle(
+        color: colors.appDarkBlack,
+        fontSize: 56,
+        fontFamily: "ProxymaNova",
+        fontWeight: FontWeight.w700,
+      );
+
+  TextStyle get maxPointsStyleText => TextStyle(
+        color: colors.appDarkBlack,
+        fontSize: 32,
         fontFamily: "ProxymaNova",
       );
 }
