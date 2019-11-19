@@ -50,7 +50,7 @@ class ResponsiveButton extends StatelessWidget {
       child: Material(
         borderRadius: borderRadius,
         clipBehavior: Clip.antiAlias,
-        color: Colors.transparent,
+        color: AppTheme.of(context).colors.primaryAccent,
         child: InkWell(
           borderRadius: borderRadius,
           splashColor: Colors.white,

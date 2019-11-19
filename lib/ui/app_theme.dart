@@ -75,6 +75,8 @@ class _Images {
   String get madeWithFlutter => "assets/images/made_with_flutter.png";
 
   String get icClose => "assets/images/ic_close.png";
+
+  String get headerBackground => "assets/images/bg.png";
 }
 
 /// Texts Styles

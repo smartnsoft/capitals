@@ -15,6 +15,14 @@ class Header extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Positioned(
+            top: 0,
+            bottom: 0,
+            left: 0,
+            child: Image.asset(
+              AppTheme.of(context).images.headerBackground,
+            ),
+          ),
+          Positioned(
             top: 20,
             right: 20,
             child: DelayedDisplay(
