@@ -23,8 +23,8 @@ class Header extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 20,
-            right: 20,
+            top: 50,
+            right: 30,
             child: DelayedDisplay(
               delay: Duration(milliseconds: 1000),
               slidingBeginOffset: Offset(0.35, 0),

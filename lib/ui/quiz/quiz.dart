@@ -49,51 +49,51 @@ class Quiz extends StatelessWidget {
           _goToResult(context, Score(points: state.score, maxPoints: state.max));
         }
       },
-      child: SafeArea(
-        child: QuizProgressContainer(
-          child: Padding(
-            padding: EdgeInsets.all(AppTheme.of(context).values.paddingInsideProgressContainer),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                ResponsiveButton(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Image.asset(
-                    AppTheme.of(context).images.icClose,
-                    height: 20,
-                    width: 20,
-                  ),
-                  text: Text(
-                    I18n.of(context).close,
-                    style: AppTheme.of(context).textStyles.mediumWhiteLabel,
-                  ),
+      child: QuizProgressContainer(
+        child: Padding(
+          padding: EdgeInsets.all(
+            AppTheme.of(context).values.paddingInsideProgressContainer,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              ResponsiveButton(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                icon: Image.asset(
+                  AppTheme.of(context).images.icClose,
+                  height: 20,
+                  width: 20,
                 ),
-                Expanded(
-                  child: BlocBuilder(
-                    bloc: BlocProvider.of<QuizBloc>(context),
-                    builder: (BuildContext context, QuizState state) {
-                      if (state is QuizLoading) {
-                        return Center(
-                          child: CircularProgressIndicator(
-                            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                          ),
-                        );
-                      } else if (state is NewQuestion) {
-                        final Question question = state.question;
-                        return _buildQuestion(context, question);
-                      } else if (state is ShowAnswer) {
-                        final Question question = state.question;
-                        return _buildQuestion(context, question, showAnswer: true);
-                      }
+                text: Text(
+                  I18n.of(context).close,
+                  style: AppTheme.of(context).textStyles.mediumWhiteLabel,
+                ),
+              ),
+              Expanded(
+                child: BlocBuilder(
+                  bloc: BlocProvider.of<QuizBloc>(context),
+                  builder: (BuildContext context, QuizState state) {
+                    if (state is QuizLoading) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      );
+                    } else if (state is NewQuestion) {
+                      final Question question = state.question;
+                      return _buildQuestion(context, question);
+                    } else if (state is ShowAnswer) {
+                      final Question question = state.question;
+                      return _buildQuestion(context, question, showAnswer: true);
+                    }
 
-                      return Container();
-                    },
-                  ),
+                    return Container();
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -26,13 +26,23 @@ class QuizProgressPainter extends CustomPainter {
     /// Draw default rectangle
     final paint = Paint();
     paint.color = defaultColor;
-    final rect = Rect.fromLTWH(0, 0, size.width, size.height);
+    final rect = Rect.fromLTWH(
+      0,
+      0,
+      size.width,
+      size.height,
+    );
 
     canvas.drawRect(rect, paint);
 
     /// Draw container background
     paint.color = containerBackground;
-    final a = Rect.fromLTWH(borderSize, borderSize, size.width - borderSize * 2, size.height - borderSize * 2);
+    final a = Rect.fromLTWH(
+      borderSize,
+      borderSize,
+      size.width - borderSize * 2,
+      size.height - borderSize * 2,
+    );
 
     canvas.drawRect(a, paint);
 

@@ -12,6 +12,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.of(context).colors.primary,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Container(
           height: _getScrollableHeight(context),
@@ -100,8 +102,8 @@ class Home extends StatelessWidget {
     }
 
     return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: Utils.isBigScreen(context) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
       children: <Widget>[
         cellsWidgets,
         Padding(
