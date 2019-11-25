@@ -7,6 +7,13 @@ import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
+  final VoidCallback onSearchTap;
+
+  const Header({
+    Key key,
+    this.onSearchTap,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -74,7 +81,9 @@ class Header extends StatelessWidget {
                   SizedBox(
                     height: 30,
                   ),
-                  Search(),
+                  Search(
+                    onTap: onSearchTap,
+                  ),
                 ],
               ),
             ),

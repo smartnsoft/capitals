@@ -5,6 +5,7 @@ import 'package:flappy_capitals/ui/app_theme.dart';
 import 'package:flappy_capitals/ui/home/cell.dart';
 import 'package:flappy_capitals/ui/home/header.dart';
 import 'package:flappy_capitals/ui/quiz/quiz.dart';
+import 'package:flappy_capitals/ui/search_screen/search_screen.dart';
 import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,9 @@ class Home extends StatelessWidget {
                     color: Colors.white,
                     child: DelayedDisplay(
                       delay: Duration(milliseconds: 200),
-                      child: Header(),
+                      child: Header(
+                        onSearchTap: () => _goToSearchScreen(context),
+                      ),
                     ),
                   ),
                   Expanded(
@@ -116,6 +119,10 @@ class Home extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  _goToSearchScreen(BuildContext context) {
+    Navigator.of(context).pushNamed(SearchScreen.routeName);
   }
 
   /// This function calculate the size of the scrollable area.

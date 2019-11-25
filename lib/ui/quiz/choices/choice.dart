@@ -76,11 +76,13 @@ class Choice extends StatelessWidget {
       return content;
     }
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(20),
-      onTap: onTap,
-      enableFeedback: !showAnswer,
-      child: content,
+    return Material(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: onTap,
+        enableFeedback: !showAnswer,
+        child: content,
+      ),
     );
   }
 

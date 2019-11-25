@@ -3,6 +3,7 @@ import 'package:flappy_capitals/core/models/score.dart';
 import 'package:flappy_capitals/ui/home/home.dart';
 import 'package:flappy_capitals/ui/quiz/quiz.dart';
 import 'package:flappy_capitals/ui/quiz/result/result.dart';
+import 'package:flappy_capitals/ui/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class Router {
@@ -28,6 +29,11 @@ class Router {
           builder: (BuildContext context) => ResultScreen(
             score: score,
           ),
+        );
+        break;
+      case SearchScreen.routeName:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => SearchScreen(),
         );
         break;
       default:
