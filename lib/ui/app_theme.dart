@@ -77,6 +77,8 @@ class _Images {
   String get icClose => "assets/images/ic_close.png";
 
   String get headerBackground => "assets/images/bg.png";
+
+  String get icCountryRow => "assets/images/line.png";
 }
 
 /// Texts Styles
@@ -115,6 +117,13 @@ class _TextStyles {
   TextStyle get mediumBlackText => TextStyle(
         color: colors.appBlack,
         fontSize: 14,
+        fontFamily: "ProxymaNova",
+      );
+
+  TextStyle get mediumBoldBlackText => TextStyle(
+        color: colors.appBlack,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
         fontFamily: "ProxymaNova",
       );
 

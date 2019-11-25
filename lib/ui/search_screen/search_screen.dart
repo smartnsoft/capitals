@@ -1,6 +1,7 @@
 import 'package:flappy_capitals/core/blocs/search/bloc.dart';
 import 'package:flappy_capitals/core/models/country.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
+import 'package:flappy_capitals/ui/search_screen/country_row.dart';
 import 'package:flappy_capitals/ui/shared/search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,11 +42,16 @@ class SearchScreen extends StatelessWidget {
                             );
                           } else if (state is SearchResultSuccess) {
                             final List<Country> countries = state.countries;
-                            return ListView.builder(
-                              itemCount: countries.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Text(countries[index].name);
-                              },
+                            return Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: ListView.builder(
+                                itemCount: countries.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return CountryRow(
+                                    country: countries[index],
+                                  );
+                                },
+                              ),
                             );
                           } else if (state is SearchError) {
                             return Center(
