@@ -9,6 +9,18 @@ import 'package:flappy_capitals/core/models/question.dart';
 class Api {
   static const String _BASE_URL = "https://restcountries.eu/rest/v2";
 
+  static Future<List<Country>> searchCountries({String query = ""}) async {
+    try {
+      final Response response = await Dio().get("$_BASE_URL/name/$query");
+      return (response.data as List).map((element) => Country.fromJson(element)).toList();
+    } on DioError catch (error) {
+      if (error.message.contains(NetworkException.DIO_NETWORK_EXCEPTION_MESSAGE))
+        throw NetworkException();
+      else
+        throw ServerException(statusCode: error.response.statusCode);
+    }
+  }
+
   static Future<List<Question>> getQuestions({
     int nbQuestions = 20,
     int nbAnswer = 2,

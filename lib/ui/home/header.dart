@@ -1,7 +1,7 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flappy_capitals/core/i18n.dart';
 import 'package:flappy_capitals/ui/app_theme.dart';
-import 'package:flappy_capitals/ui/home/search.dart';
+import 'package:flappy_capitals/ui/shared/search.dart';
 import 'package:flappy_capitals/ui/shared/responsive_button.dart';
 import 'package:flappy_capitals/utils.dart';
 import 'package:flutter/material.dart';
